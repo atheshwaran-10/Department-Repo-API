@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: mysql1
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: library
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 12345678
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - "5333:3306"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
